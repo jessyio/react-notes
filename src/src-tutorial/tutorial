@@ -1,0 +1,14 @@
+React is made of components, implemented with a js class, state and render
+State == data to display when component rendered
+Render == what UI looks like; outputs react element
+
+React auto communicates with DOM
+So only have to change component states and react react to the state and auto updates DOM to match that state
+
+First download node.js
+Shell: npm i -g create-react-app
+Download code editor (like Atom)
+In editor, download "simple react snippets" & "prettier - code formatter"
+In editor, in user settings write "editor.formatOnSave: true"
+
+Shell: create-react-app react-tutorial
