@@ -26,27 +26,31 @@ class UsersPage extends Component{
     //'value' is getting the value of the above 'orderByChild & equalTo' object
     //e.g., retrieving {id: "Harry", title:'HarryTitle'}
     .on('value', snapshot => {
-      //setting it to a temporary value of id, title, tages and note retrieved from db
-      //CURRENTLY REFERENCING THE NOTE INCORRECTLY AS THE CONSOLE.LOG BELOW SHOWS NULL IN THE ARRAY
-      let snapshotNote = {
-        id: snapshot.val().title,
-        title: snapshot.val().title,
-        tags: snapshot.val().tags,
-        note: snapshot.val().note
-      }
+      //https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot
+      snapshot.forEach(snapshot => {
+        //setting it to a temporary value of id, title, tages and note retrieved from db
+        //CURRENTLY REFERENCING THE NOTE INCORRECTLY AS THE CONSOLE.LOG BELOW SHOWS NULL IN THE ARRAY
+        let snapshotNote = {
+          id: snapshot.val().title,
+          title: snapshot.val().title,
+          tags: snapshot.val().tags,
+          note: snapshot.val().note
+        }
 
-    //validating what the db object looks like
-    console.log(snapshot.val());
 
-    //validating what the temporary note looks like
-    console.log('snapshotNote: ' + snapshotNote)
+      //validating what the db object looks like
+      console.log(snapshot.val())
 
-    //pushing the temporary note onto the array
-    this.note.push(snapshotNote);
+      //validating what the temporary note looks like
+      console.log('snapshotNote: ' + snapshotNote)
 
-    console.log(this.note)
+      //pushing the temporary note onto the array
+      this.notes.push(snapshotNote);
+
+      console.log(this.note)
+    })
   })
-  }
+}
 
   render() {
     return (
@@ -60,7 +64,7 @@ class UsersPage extends Component{
           <Notes notes={this.note}/>
       </div>
     );
-  }
+  };
 
 };
 
